@@ -15,12 +15,14 @@ function getTasks() {
 }
 
 function completeTask(id) {
-    tasks.find(isTask => {
-        if (isTask.id === id) {
-            isTask.completed = true;
-        }
-    });
-   return true;
+    const task = tasks.find(task => task.id === id);
+
+    if (!task) {
+        return false;
+    }
+
+    task.completed = true;
+    return true;
 }
 
 function deleteTask(id) {

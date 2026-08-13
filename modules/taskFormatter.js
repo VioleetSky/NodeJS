@@ -1,7 +1,6 @@
-const {getTasks} = require("./taskService");
 
-function taskFormatter() {
-    const tasks = getTasks();
-    tasks.forEach(item=>console.log(`Task: ${item.title} \n Status: ${item.complete ? `Completed` : `In progress` }`))
+
+function taskFormatter(tasks) {
+    tasks.forEach(item=>console.log(`Task: ${item.title} \n Status: ${item.completed ? `Completed` : `In progress` }`))
 }
 module.exports= taskFormatter;
