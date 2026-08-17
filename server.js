@@ -6,7 +6,7 @@ const server=http.createServer((req,res)=>{
         res.end(`<h1>Study Task Tracker API</h1>`)
         return;
     }
-    if(req.url==="/tasks"){
+    if( req.method === "GET" && req.url==="/tasks"){
         res.writeHead(200, { 'Content-Type': 'application/json' });
         const tasks=getTasks();
         res.end(JSON.stringify(tasks, null, 2));
@@ -14,7 +14,7 @@ const server=http.createServer((req,res)=>{
     }
     const parsedUrl = new URL(req.url, `http://${req.headers.host}`);
 
-    if(parsedUrl.pathname === "/tasks"){
+    if(parsedUrl.pathname === "/tasks" && req.method === "GET" ){
         const status=parsedUrl.searchParams.get("status");
         const tasks=getTasks();
 
@@ -45,6 +45,22 @@ const server=http.createServer((req,res)=>{
             return;
         }
         res.end(JSON.stringify(task, null, 2));
+        return;
+    }
+    if(req.method === "POST" && req.url==="/tasks"){
+        let body="";
+        req.on("data",(chunk)=> {
+            body+=chunk;
+        })
+        req.on("end",()=>{
+            console.log(req.method);
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+             res.end(JSON.stringify({
+                     message: "Task added successfully",
+                     data:JSON.parse(body)
+                 }
+             ));
+        })
         return;
     }
 
