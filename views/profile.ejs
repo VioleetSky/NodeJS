@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My page</title>
+</head>
+<body>
+
+<h1>Привіт, <%= name%></h1>
+<p><%= role%></p>
+<p><%= isOnline ? "Онлайн" : "Офлайн" %></p>
+<ul>
+    <% hobbies.forEach(item=>{ %>
+    <li><%= item %></li>
+    <% }) %>
+
+</ul>
+
+</body>
+</html>

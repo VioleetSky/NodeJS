@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My page</title>
+</head>
+<body>
+
+<h1>Students</h1>
+
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Ім'я</th>
+        <th>Level</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% students.forEach(item => { %>
+        <tr>
+            <td><%= item.name %></td>
+            <td><%= item.level %></td>
+        </tr>
+    <% }) %>
+    </tbody>
+</table>
+
+</body>
+</html>
